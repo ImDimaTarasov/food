@@ -6,11 +6,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     function hideTabContent() {
         tabsContent.forEach(item => {
-
-                        //простая смена
-        //     item.style.display ="none";//скрываем все
-
-            // смена класcами css
+            
             item.classList.add('hide');
             item.classList.remove('show', 'fade');
         });
@@ -23,10 +19,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
     function showTabContent(i = 0){// по умолчанию значение 0
 
-                    //простая смена
-        //  tabsContent[i].style.display ='block';//показываем один вариант
-
-            // смена класcами css
         tabsContent[i].classList.add('show', 'fade');
         tabsContent[i].classList.remove('hide');
 
@@ -169,41 +161,6 @@ window.addEventListener('DOMContentLoaded', function() {
     function deleteNotDigits(str){
         return +str.replace(/\D/g, '');
     }
-    // showSlides(slideIndex);
-
-    // if(slides.length < 10){
-    //     total.textContent = `0${slides.length}`;
-    // }else{
-    //     total.textContent = slides.length;
-    // }
-
-    // function showSlides(n){
-    //     if(n > slides.length){
-    //         slideIndex =1;
-    //     }
-    //     if(n < 1){
-    //         slideIndex = slides.length;
-    //     }
-    //     slides.forEach(item => item.style.display = 'none');
-
-    //     slides[slideIndex -1].style.display = 'block';
-
-    //     if(slides.length < 10){
-    //         current.textContent = `0${slideIndex}`;
-    //     }else{
-    //         current.textContent = slideIndex;
-    //     }
-    // }
-
-    // function plusSlides(n){
-    //     showSlides(slideIndex += n);
-    // }
-    //  slidePrev.addEventListener('click', () =>{
-    //         plusSlides(-1);
-    //  });
-    //  slideNext.addEventListener('click', () =>{
-    //     plusSlides(1);
-    // });
 
     //TIMER
     const deadline = '2020-11-21';
@@ -265,8 +222,7 @@ window.addEventListener('DOMContentLoaded', function() {
     function openModal(){
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';// когда открывается окно, нельзя прокрутить страницу
-        //modal.classList.add('show');//можно навесить клас и удалить клас show и hide
-            // modal.classList.remove('hide');
+
         clearInterval(modalTimerId);
     }
     
@@ -277,8 +233,6 @@ window.addEventListener('DOMContentLoaded', function() {
     function closeModal (){
         modal.style.display = 'none';
         document.body.style.overflow = '';
-        // modal.classList.add('hide');//можно навесить клас и удалить клас 
-        // modal.classList.remove('show');
     }
    
     
@@ -289,7 +243,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
     
     document.addEventListener('keydown', (e) => {
-        if(e.code === "Escape" ){ //&& modal.classList.contains('show')
+        if(e.code === "Escape" ){ 
             closeModal();  
         }
     });
@@ -354,12 +308,7 @@ window.addEventListener('DOMContentLoaded', function() {
         return await res.json();  
     };
 
-    // getResourse('http://localhost:3000/menu')
-    //     .then(data => {
-    //         data.forEach(({img, altimg, title, descr, price}) =>{
-    //             new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
-    //         });
-    //     });
+    
 
     //библиотека axios
     axios.get('http://localhost:3000/menu')
@@ -369,33 +318,8 @@ window.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-// второй метод сразу создает карточку(без шаблонизации)
-    // getResourse('http://localhost:3000/menu') 
-    //     .then(data => createCard(data));
-    
-    // function createCard(data){
-    //     data.forEach(({img, altimg, title, descr, price})=>{
-    //         const element = document.createElement('div');
-    //         let priceTrans = price * 27;
-    //         element.classList.add('menu__item');
-
-    //         element.innerHTML = `
-    //             <img src=${img} alt=${altimg}>
-    //             <h3 class="menu__item-subtitle">${title}</h3>
-    //             <div class="menu__item-descr">${descr}</div>
-    //             <div class="menu__item-divider"></div>
-    //             <div class="menu__item-price">
-    //                 <div class="menu__item-cost">Цена:</div>
-    //                 <div class="menu__item-total"><span>${priceTrans}</span> грн/день</div>
-    //             </div>
-    //         `;
-
-    //         document.querySelector('.menu .container').append(element);
-    //     });
-    // }
 
     //Forms
-
 
     const forms = document.querySelectorAll('form');
     const message = {
@@ -433,17 +357,10 @@ window.addEventListener('DOMContentLoaded', function() {
            
             form.insertAdjacentElement('afterend', statusMessage);
             
-            
-            // const request = new XMLHttpRequest(); //старый способ 
-            // request.open('POST', 'server.php');
-
-            // request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
             const formData = new FormData(form);
 
             const json =JSON.stringify(Object.fromEntries(formData.entries() ));
 
-
-            // request.send(json);
             
            postData('http://localhost:3000/requests',json)
            .then(data => {
@@ -456,17 +373,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 form.reset();
            });
 
-            // request.addEventListener('load', () => {
-            //     if (request.status === 200) {
-            //         console.log(request.response);
-            //         showThanksModal(message.success);
-            //         form.reset();
-            //         statusMessage.remove();
-                    
-            //     } else {
-            //         showThanksModal(message.failure);
-            //     }
-            // });
+           
         });
     }
 
